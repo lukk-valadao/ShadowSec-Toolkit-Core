@@ -239,9 +239,9 @@ Uso, modificação e redistribuição são permitidos, desde que mantidos os cr�
 
 ## 📧 Contato: lukk.valadao@gmail.com
 
-🛡️ ShadowSec Toolkit
+## 🛡️ ShadowSec Toolkit
 
-Autor: Luciano Valadão
+### Autor: Luciano Valadão
 
 19/12/2025
 

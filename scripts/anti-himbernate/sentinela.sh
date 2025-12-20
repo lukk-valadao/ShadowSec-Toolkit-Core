@@ -21,6 +21,6 @@ bash -c "
         echo '⏳ '$PROCESSO' ainda rodando... mantendo sistema acordado.'
         sleep 30
     done
-    echo '✅ Processo '$PROCESSO' finalizado. Sistema liberado para descansar.'
+    echo '✅ Processo '$PROCESSO' finalizado. Sistema liberado.'
 "
 

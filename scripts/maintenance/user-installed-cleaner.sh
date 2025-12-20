@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Cores estilo Noir
+# Cores
 RED='\e[91m'
 GREEN='\e[92m'
 YELLOW='\e[93m'

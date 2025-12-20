@@ -38,6 +38,6 @@ Thumbs.db
 .idea/
 
 # ==========================
-# Git (opcional, mas seguro)
+# Git
 # ==========================
 .git/

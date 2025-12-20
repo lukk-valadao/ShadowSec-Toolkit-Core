@@ -1,6 +1,6 @@
 #!/bin/bash
 # ========================================================
-#  Shadows Cyber Defense - Firewall Hardening (UFW)
+#  Firewall Hardening (UFW)
 #  Versão interativa com opções de configuração
 # ========================================================
 
@@ -106,6 +106,6 @@ ufw --force enable
 echo "[+] Configuração final do UFW:"
 ufw status verbose
 
-echo -e "\n✅ Firewall configurado com sucesso, meu Shadows."
+echo -e "\n✅ Firewall configurado com sucesso."
 echo "   Backup salvo em: $BACKUP_FILE"
 

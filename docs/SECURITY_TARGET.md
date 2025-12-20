@@ -1,91 +1,150 @@
-ShadowSec Toolkit – Mini Security Target (ST)
-1. Introdução
-1.1 Identificação
-Produto: ShadowSec Toolkit
+### ShadowSec Toolkit Core – Mini Security Target (ST)
 
-Versão: 0.1 (em desenvolvimento)
+## 1. Introdução
 
-Autor: Lukk Shadows
+### 1.1 Identificação
 
-Data: 2025-08-04
+Produto: ShadowSec Toolkit Core
+Versão: 1.0 (Core Architecture – em evolução)
+Autor: Luciano Valadão
+Data: 2025-12-20
 
-1.2 Propósito
-O ShadowSec Toolkit é uma suíte modular de ferramentas de cibersegurança, criada para auditar, analisar e fortalecer sistemas e redes. Seu objetivo é fornecer recursos práticos para entusiastas e profissionais de segurança, seguindo boas práticas reconhecidas internacionalmente, baseadas no Common Criteria (ISO/IEC 15408).
+### 1.2 Propósito
 
-2. Escopo e Ambiente
+O ShadowSec Toolkit Core é o núcleo arquitetural de uma suíte modular de cibersegurança, projetado para carregar, executar, auditar e registrar módulos de segurança de forma padronizada e controlada.
+
+Este Core fornece a infraestrutura comum para módulos de auditoria, hardening e análise de segurança, adotando princípios alinhados ao Common Criteria (ISO/IEC 15408), com foco em rastreabilidade, integridade, separação de responsabilidades e extensibilidade segura.
+
+O Core não implementa lógica de defesa direta, mas garante que todas as ações de segurança executadas por módulos sejam corretamente orquestradas, auditadas e reportadas.
+
+## 2. Escopo e Ambiente
 2.1 Escopo
-Ferramentas de auditoria e hardening para sistemas Linux.
 
-Verificação de segurança de rede local e hosts.
+O ShadowSec Toolkit Core é responsável por:
 
-Análise básica de malwares e integridade de arquivos.
+Descoberta e carregamento dinâmico de módulos de segurança.
 
-Configuração simplificada de firewall e monitoramento de logs.
+Execução controlada de módulos de auditoria e hardening.
 
-2.2 Ambiente de Operação
-Sistemas operacionais Linux (Debian-based e derivados).
+Padronização de resultados de execução (ModuleResult).
 
-Ambiente de execução: terminal/bash e Python 3.x.
+Geração de logs estruturados de auditoria em formato JSON.
 
-Usuário-alvo: administradores de sistemas, analistas de segurança e estudantes de cibersegurança.
+Separação clara entre lógica de orquestração (Core) e lógica de segurança (Módulos).
 
-3. Ameaças Mitigadas
-T1: Configurações inseguras de sistema e rede.
+Fornecer base técnica para expansão futura da suíte ShadowSec.
 
-T2: Acesso não autorizado a dados sensíveis.
+⚠️ O Core não executa mitigação direta de ameaças, delegando essa responsabilidade exclusivamente aos módulos.
 
-T3: Falta de rastreabilidade e auditoria de ações críticas.
+### 2.2 Ambiente de Operação
 
-T4: Presença de malwares ou arquivos suspeitos.
+Sistema Operacional: Linux (Debian-based e derivados)
 
-T5: Vulnerabilidades conhecidas sem detecção ou resposta.
+Ambiente de Execução: Python 3.x (CLI)
 
-4. Objetivos de Segurança
-O1: Identificar e corrigir configurações inseguras (hardening).
+Usuários-alvo:
 
-O2: Monitorar e auditar atividades para rastreabilidade.
+Administradores de sistemas
 
-O3: Detectar e alertar sobre malwares ou arquivos suspeitos.
+Analistas de cibersegurança
 
-O4: Facilitar configuração de firewall e restrições de acesso.
+Estudantes e pesquisadores de segurança
 
-O5: Gerar relatórios claros e exportáveis para o usuário.
+Ambientes de laboratório e auditoria técnica
 
-5. Funções de Segurança (Requisitos Funcionais)
-Baseadas na Parte 2 do Common Criteria:
+## 3. Ameaças Consideradas
+
+As ameaças consideradas neste Security Target são relativas à execução, rastreabilidade e confiabilidade das operações de segurança, e não diretamente ao ambiente protegido.
+
+T1: Execução de módulos sem rastreabilidade adequada.
+
+T2: Falta de padronização nos resultados de auditoria.
+
+T3: Perda de integridade ou confiabilidade dos registros de auditoria.
+
+T4: Execução de módulos em ambientes não compatíveis sem indicação clara.
+
+T5: Acoplamento excessivo entre módulos e o núcleo, dificultando validação e auditoria.
+
+## 4. Objetivos de Segurança
+
+### 4.1 Objetivos do Core
+
+O1: Garantir execução controlada e previsível dos módulos.
+
+O2: Fornecer rastreabilidade completa das ações executadas.
+
+O3: Padronizar resultados de segurança para análise posterior.
+
+O4: Isolar o Core da lógica específica de segurança.
+
+O5: Facilitar auditoria interna e evolução futura do projeto.
+
+## 5. Funções de Segurança (Requisitos Funcionais)
+
+Baseadas na Parte 2 do Common Criteria (ISO/IEC 15408-2):
 
 Função	Código CC	Descrição
-Criptografia de relatórios	FCS_COP	Criptografia para proteger dados de auditoria e relatórios gerados.
-Auditoria e geração de logs	FAU_GEN	Geração de registros de eventos importantes para rastreabilidade.
-Controle de acesso básico	FIA_UAU	(Futuro) Autenticação para módulos sensíveis ou modo multiusuário.
-Teste de integridade	FPT_TST	Verificação de integridade dos módulos e dependências.
-Proteção de dados do usuário	FDP_ACC	Garantir que relatórios e backups tenham acesso controlado.
+Geração de auditoria	FAU_GEN	Registro estruturado de eventos de execução dos módulos.
+Associação de eventos	FAU_SAR	Associação de logs a módulos, ações, host e usuário executor.
+Integridade do fluxo	FPT_TST	Verificação lógica do estado e execução consistente dos módulos.
+Separação de funções	FMT_SMF	Separação entre Core (orquestração) e módulos (segurança).
+Proteção de dados de auditoria	FDP_ACC	Controle lógico sobre os dados de logs e relatórios gerados.
 
-6. Mapeamento dos Módulos do ShadowSec Toolkit
-Módulo	Funções de Segurança Relacionadas
-system_checkup.sh	FAU_GEN (auditoria), FPT_TST (integridade)
-net_scan.py	FAU_GEN (log de varreduras), FDP_ACC (proteção de relatórios)
-malware_scan.py	FAU_GEN (log), FPT_TST (verificação de assinaturas)
-log_audit.py	FAU_GEN (auditoria), FIA_UAU (futuro: controle de acesso a relatórios)
-hardening_assistant.py	FDP_ACC (proteção de configurações), FPT_TST (checagens de estado)
-firewall_configurator.py	FDP_ACC (controle de regras), FAU_GEN (log de alterações)
-threat_intel_fetcher.py	FAU_GEN (log), FDP_ACC (proteção de dados consultados)
+⚠️ Criptografia de logs e autenticação avançada são consideradas extensões futuras, fora do escopo atual do Core.
 
-7. Nível de Garantia (EAL)
-Nível inicial: EAL1/EAL2 – Avaliação funcional e testes básicos.
+## 6. Mapeamento do Core e Módulos
 
-Expansão futura: Possível evolução para EAL3/EAL4, com maior formalização e auditorias externas, caso o projeto seja aplicado em ambientes corporativos ou governamentais.
+### 6.1 Componentes do Core
 
-8. Justificativa
-Este ST segue a estrutura do Common Criteria para:
+Componente	Funções de Segurança
+module_loader	FAU_GEN, FMT_SMF
+base_module	FPT_TST, FMT_SMF
+module_result	FAU_SAR
+logger	FAU_GEN, FDP_ACC
+main	FAU_GEN (orquestração)
+6.2 Exemplos de Módulos Integrados
+Módulo	Funções Relacionadas
+Firewall Audit (UFW)	FAU_GEN, FPT_TST
+Firewall Hardening (UFW)	FAU_GEN, FDP_ACC
+Slow HTTP Audit	FAU_GEN
+Network Scan	FAU_GEN
+System Checkup	FAU_GEN, FPT_TST
 
-Estabelecer boas práticas de segurança desde o início do projeto.
+## 7. Nível de Garantia (EAL)
 
-Facilitar auditorias internas e evolução futura para certificação formal.
+Atual: EAL1 / EAL2
+(Avaliação funcional, testes básicos e rastreabilidade)
 
-Garantir que cada módulo seja projetado com funções de segurança claras e rastreáveis.
+Evolução prevista:
+Possível avanço para EAL3, com:
 
-9. Referências
-ISO/IEC 15408 – Common Criteria for Information Technology Security Evaluation.
+Documentação de arquitetura formal
 
-Common Criteria Portal: https://www.commoncriteriaportal.org
+Modelagem de ameaças mais detalhada
+
+Testes de robustez e validação cruzada
+
+## 8. Justificativa
+
+Este Security Target foi ajustado para refletir corretamente a natureza do ShadowSec Toolkit Core como:
+
+Um framework de orquestração de segurança
+
+Um facilitador de auditoria técnica
+
+Uma base sólida para evolução modular e certificável
+
+A separação clara entre Core e módulos permite:
+
+Melhor auditabilidade
+
+Menor acoplamento
+
+Evolução segura e incremental do projeto
+
+## 9. Referências
+
+ISO/IEC 15408 – Common Criteria for Information Technology Security Evaluation
+
+Common Criteria Portal – https://www.commoncriteriaportal.org

@@ -3,7 +3,7 @@
 # Script para configurar suspensão automática após 15 minutos de inatividade
 # Ideal para ambientes corporativos
 # Ver equivalente em modules/idle_suspend_check.py
-# Por: Shadows + Aeris Satana 🦇
+# Por: Luciano Valadão
 
 CONF_FILE="/etc/systemd/logind.conf"
 BACKUP_FILE="/etc/systemd/logind.conf.bkp-$(date +%Y%m%d-%H%M%S)"
@@ -31,4 +31,4 @@ grep -q '^IdleActionSec=' "$CONF_FILE" || echo 'IdleActionSec=15min' >> "$CONF_F
 # Reinicia o serviço para aplicar
 systemctl restart systemd-logind
 
-echo "✅ Configuração aplicada: sistema suspenderá após 15 minutos de inatividade."
+echo "Configuração aplicada: Sistema suspenderá após 15 minutos de inatividade."
