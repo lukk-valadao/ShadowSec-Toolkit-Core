@@ -1,0 +1,43 @@
+# ==========================
+# Ambientes e dependências
+# ==========================
+venv/
+.env
+__pypackages__/
+
+# ==========================
+# Python cache / bytecode
+# ==========================
+__pycache__/
+*.py[cod]
+
+# ==========================
+# Logs e saídas geradas
+# ==========================
+*.log
+modules/logs/
+modules/shadowsec_maldet/logs/
+
+# ==========================
+# Testes e dados temporários
+# ==========================
+tests/
+data_signatures_testes/
+modules/shadowsec_maldet/testes/
+
+# ==========================
+# Artefatos do sistema
+# ==========================
+.DS_Store
+Thumbs.db
+
+# ==========================
+# IDE / Editor
+# ==========================
+.vscode/
+.idea/
+
+# ==========================
+# Git (opcional, mas seguro)
+# ==========================
+.git/
