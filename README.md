@@ -81,7 +81,7 @@ ShadowSec-Toolkit/
 │   ├── ARCHITECTURE.md
 │   ├── SECURITY_TARGET.md
 │   ├── THREAT_MODEL.md
-│   └── modules/
+│   └── modules/scripts
 │
 ├── logs/
 │
@@ -98,6 +98,11 @@ ShadowSec-Toolkit/
 │   └── __init__.py
 │
 ├── scripts/
+│   ├── anti-hibernate/
+│   ├── config/
+│   ├── install/
+│   └── maintenance/
+│       └── user-installed-cleaner.sh
 │
 └── utils/
     ├── cyber_banner.py
