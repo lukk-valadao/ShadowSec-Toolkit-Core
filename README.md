@@ -36,6 +36,17 @@ Cenários offline ou restritos
 
 Nenhuma funcionalidade é executada sem contexto explícito.
 
+## ⚠️ Status do Projeto
+
+O ShadowSec Toolkit encontra-se atualmente em processo de adaptação para este novo Core modular.
+Os módulos existentes estão sendo migrados e padronizados gradualmente, respeitando os princípios arquiteturais definidos.
+
+Neste momento, os módulos já adaptados e funcionais são:
+
+Firewall (Audit / Apply – UFW)
+
+Web (Auditorias HTTP específicas)
+
 ## Objetivos do Core
 
 Padronizar execução e retorno de módulos
@@ -146,7 +157,7 @@ Apply: aplicação de mudanças (hardening)
 
 Híbridos (planejado): audit + apply via submenu
 
-### Exemplos atuais
+### Módulos atualmente adaptados ao Core
 
 Firewall Hardening (UFW)
 
@@ -202,7 +213,7 @@ docs/modules/ — documentação específica de cada módulo
 
 Execução mínima como root
 
-Nenhum tráfego ativo sem necessidade
+Elevação de privilégio apenas quando necessária
 
 Auditorias passivas por padrão
 

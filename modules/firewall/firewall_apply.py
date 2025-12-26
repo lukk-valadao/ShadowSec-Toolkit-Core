@@ -22,7 +22,7 @@ class FirewallApply(BaseModule):
         system = platform.system().lower()
         changes = []
 
-        # 1 Só funciona em Linux
+        # 1️⃣ Só funciona em Linux
         if system != "linux":
             log_json_audit(
                 module_name="firewall",
@@ -44,7 +44,7 @@ class FirewallApply(BaseModule):
                 platform=system
             )
 
-        # 2️ Verifica se UFW está instalado
+        # 2️⃣ Verifica se UFW está instalado
         if not shutil.which("ufw"):
             log_json_audit(
                 module_name="firewall",
@@ -68,7 +68,7 @@ class FirewallApply(BaseModule):
                 platform=system
             )
 
-        # 3️ Começa a aplicar hardening
+        # 3️⃣ Começa a aplicar hardening
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         backup = Path.home() / f"ufw_backup_{timestamp}.txt"
 
@@ -96,7 +96,7 @@ class FirewallApply(BaseModule):
         self._run("sudo ufw --force enable")
         changes.append("Firewall enabled with logging")
 
-        # 4️ Log JSON de auditoria
+        # 4️⃣ Log JSON de auditoria
         log_json_audit(
             module_name="firewall",
             payload={
@@ -112,7 +112,7 @@ class FirewallApply(BaseModule):
             }
         )
 
-        # 5️ Retorna resultado do módulo
+        # 5️⃣ Retorna resultado do módulo
         return ModuleResult(
             module=self.name,
             status=Status.OK,

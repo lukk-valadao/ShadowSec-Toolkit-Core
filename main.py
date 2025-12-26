@@ -9,6 +9,7 @@ from datetime import datetime
 
 from utils.cyber_banner import cyber_boot, DARK
 from utils.logger import log_json_audit, get_executed_by, get_host_info
+from utils.privileges import require_root
 
 from core.module_loader import load_modules
 from core.module_scope import ModuleScope
@@ -109,4 +110,5 @@ def menu():
 # ==========================================================
 if __name__ == "__main__":
     cyber_boot()
+    require_root()
     menu()

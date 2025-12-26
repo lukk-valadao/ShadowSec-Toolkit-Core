@@ -12,6 +12,7 @@ from core.base_module import BaseModule, ModuleScope
 from utils.logger import log_json_audit, get_executed_by, get_host_info
 
 
+
 class FirewallAudit(BaseModule):
     name = "Firewall Audit (UFW)"
     scope = ModuleScope.DESKTOP_ONLY
