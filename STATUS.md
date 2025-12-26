@@ -57,13 +57,13 @@ para o novo padrão arquitetural:
 
 - Atualizações do sistema
 - Limpeza de pacotes e cache
-- Scan de vírus (ClamAV / Defender)")
-- Pacotes órfãos")
-- Diretórios de backup")
-- Usuários com privilégios sudo / administradores")
-- Serviços ativos")
-- Espaço em disco")
-- Conexões de rede")
+- Scan de vírus (ClamAV / Defender)
+- Pacotes órfãos
+- Diretórios de backup
+- Usuários com privilégios sudo / administradores
+- Serviços ativos
+- Espaço em disco
+- Conexões de rede
 - Integridade de pacotes do sistema
 - Net Scan — mapeamento básico de rede (wrapper Nmap)
 - Maldet — análise local com ClamAV + assinaturas adicionais
