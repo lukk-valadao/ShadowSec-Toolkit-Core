@@ -92,7 +92,9 @@ Prevenção de execução inválida em mobile
 Planejamento de migração futura sem retrabalho
 
 ## 6. Carregamento Dinâmico de Módulos
+
 ### 6.1 Estrutura Obrigatória
+```
 modules/
 ├── firewall/
 │   ├── __init__.py
@@ -101,7 +103,7 @@ modules/
 ├── syscheckup/
 ├── limpeza/
 └── __init__.py
-
+```
 
 Cada subdiretório representa um package de módulos.
 
@@ -279,9 +281,11 @@ Se quebrar:
 
 ---
 
-# Arquitetura antes de funcionalidade.
+#### Arquitetura antes de funcionalidade.
 
 ---
 🛡️ ShadowSec Toolkit ©
+
 Autor: Luciano Valadão
+
 16/12/2025

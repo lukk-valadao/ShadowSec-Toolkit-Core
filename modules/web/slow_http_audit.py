@@ -70,9 +70,9 @@ class SlowHttpAudit(BaseModule):
                 "details": suspects
             },
             recommendations=[
-                "Review web server request timeout settings",
-                "Enable slow request mitigation (client_body_timeout, RequestReadTimeout)",
-                "Monitor these IPs for persistence"
+                "Revisar as configurações de tempo limite de requisição do servidor web",
+                "Habilitar a mitigação de requisições lentas (client_body_timeout, RequestReadTimeout)",
+                "Monitorar esses IPs para persistência"
             ]
         )
 

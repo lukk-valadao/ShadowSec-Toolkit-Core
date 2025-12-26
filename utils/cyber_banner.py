@@ -54,7 +54,7 @@ def cyber_boot(banner_text=UNIVERSAL_BANNER, final_color=DARK["purple"], speed=0
     for color in ANIM_SEQUENCE:
         print(color + banner_text + DARK["reset"])
         time.sleep(speed)
-        print(f"\033[{num_lines}A", end="")  # Agora funciona perfeitamente
+        print(f"\033[{num_lines}A", end="")
 
     # Banner final
     print(final_color + banner_text + DARK["reset"])
@@ -70,4 +70,4 @@ if __name__ == "__main__":
     # cyber_boot(meu_banner_personalizado)            # usa banner customizado
     # cyber_boot(final_color=DARK["blood"], speed=0.15)  # cor final vermelha + mais rápido
 
-    print(f"{DARK['violet']}[+] Tool carregada. Pronto para operar nas sombras.{DARK['reset']}\n")
+    print(f"{DARK['violet']}[+] O modo de detecção de intrusão do sistema está ativado.{DARK['reset']}\n")

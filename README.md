@@ -1,12 +1,6 @@
 # 🛡️ ShadowSec Toolkit • Core ©
 
-![OS](https://img.shields.io/badge/OS-Linux%20%7C%20Windows%20%7C%20Android-blueviolet)   ![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python)
-
-![Architecture](https://img.shields.io/badge/Architecture-Plugin--Based-critical)   ![Security](https://img.shields.io/badge/Security-Offensive%20%26%20Defensive-red)
-
-![Stability](https://img.shields.io/badge/Stability-Core%20Stable%20%7C%20Modules%20Migrating-orange)   ![Use Case](https://img.shields.io/badge/Use%20Case-Security%20Research-informational)
-
-![License](https://img.shields.io/badge/License-MIT-green)
+![OS](https://img.shields.io/badge/OS-Linux%20%7C%20Windows%20%7C%20Android-blueviolet)   ![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python)   ![Architecture](https://img.shields.io/badge/Architecture-Plugin--Based-critical)   ![Security](https://img.shields.io/badge/Security-Offensive%20%26%20Defensive-red)   ![Stability](https://img.shields.io/badge/Stability-Core%20Stable%20%7C%20Modules%20Migrating-orange)   ![Use Case](https://img.shields.io/badge/Use%20Case-Security%20Research-informational)   ![License](https://img.shields.io/badge/License-MIT-green)
 
 ## Framework Modular de Cibersegurança, para Auditoria, Hardening e Monitoramento local, com foco em arquitetura sólida, extensibilidade e operação controlada.
 

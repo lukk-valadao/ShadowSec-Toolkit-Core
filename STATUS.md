@@ -1,4 +1,4 @@
-# 🛡️ ShadowSec Toolkit — Migration Status ©
+# 🛡️ ShadowSec Toolkit — Migration Status
 
 Este documento descreve o **estado atual da migração** do ShadowSec Toolkit
 para o novo **Core modular plugin-based**, bem como o progresso dos módulos
@@ -55,6 +55,16 @@ Os módulos abaixo existem em versões anteriores do projeto
 ou em formato experimental, e serão **gradualmente reescritos**
 para o novo padrão arquitetural:
 
+- Atualizações do sistema
+- Limpeza de pacotes e cache
+- Scan de vírus (ClamAV / Defender)")
+- Pacotes órfãos")
+- Diretórios de backup")
+- Usuários com privilégios sudo / administradores")
+- Serviços ativos")
+- Espaço em disco")
+- Conexões de rede")
+- Integridade de pacotes do sistema
 - Net Scan — mapeamento básico de rede (wrapper Nmap)
 - Maldet — análise local com ClamAV + assinaturas adicionais
 - ShadowSec RootKit Scan — auditoria e detecção de rootkits em sistemas Linux

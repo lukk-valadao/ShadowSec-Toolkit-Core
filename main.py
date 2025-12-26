@@ -23,7 +23,7 @@ LOG_DIR = BASE_DIR / "logs"
 LOG_DIR.mkdir(exist_ok=True)
 
 # ==========================================================
-# CLI HELPERS
+# AUX CLI
 # ==========================================================
 def clear():
     os.system("cls" if platform.system() == "Windows" else "clear")

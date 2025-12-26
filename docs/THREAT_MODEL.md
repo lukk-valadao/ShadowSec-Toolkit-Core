@@ -1,4 +1,4 @@
-# Threat Model – ShadowSec Toolkit Core
+# Threat Model – 🛡️ ShadowSec Toolkit • Core ©
 
 ## 1. Introdução
 
@@ -12,17 +12,17 @@ O modelo de ameaças é baseado no framework STRIDE, com foco na execução segu
 
 O modelo STRIDE classifica ameaças em seis categorias:
 
-S – Spoofing: Falsificação de identidade.
+### S – Spoofing: Falsificação de identidade.
 
-T – Tampering: Alteração não autorizada de dados ou código.
+### T – Tampering: Alteração não autorizada de dados ou código.
 
-R – Repudiation: Ações sem rastreabilidade.
+### R – Repudiation: Ações sem rastreabilidade.
 
-I – Information Disclosure: Vazamento de informações.
+### I – Information Disclosure: Vazamento de informações.
 
-D – Denial of Service: Interrupção ou degradação do serviço.
+### D – Denial of Service: Interrupção ou degradação do serviço.
 
-E – Elevation of Privilege: Obtenção indevida de privilégios.
+### E – Elevation of Privilege: Obtenção indevida de privilégios.
 
 ## 3. Escopo
 

@@ -1,4 +1,4 @@
-### ShadowSec Toolkit Core – Mini Security Target (ST)
+# 🛡️ ShadowSec Toolkit • Core © – Mini Security Target (ST)
 
 ## 1. Introdução
 
@@ -18,7 +18,8 @@ Este Core fornece a infraestrutura comum para módulos de auditoria, hardening e
 O Core não implementa lógica de defesa direta, mas garante que todas as ações de segurança executadas por módulos sejam corretamente orquestradas, auditadas e reportadas.
 
 ## 2. Escopo e Ambiente
-2.1 Escopo
+
+### 2.1 Escopo
 
 O ShadowSec Toolkit Core é responsável por:
 
@@ -84,31 +85,48 @@ O5: Facilitar auditoria interna e evolução futura do projeto.
 
 Baseadas na Parte 2 do Common Criteria (ISO/IEC 15408-2):
 
-Função	Código CC	Descrição
-Geração de auditoria	FAU_GEN	Registro estruturado de eventos de execução dos módulos.
-Associação de eventos	FAU_SAR	Associação de logs a módulos, ações, host e usuário executor.
-Integridade do fluxo	FPT_TST	Verificação lógica do estado e execução consistente dos módulos.
-Separação de funções	FMT_SMF	Separação entre Core (orquestração) e módulos (segurança).
-Proteção de dados de auditoria	FDP_ACC	Controle lógico sobre os dados de logs e relatórios gerados.
+### Função	Código CC	Descrição
 
-⚠️ Criptografia de logs e autenticação avançada são consideradas extensões futuras, fora do escopo atual do Core.
+Geração de auditoria	FAU_GEN    	Registro estruturado de eventos de execução dos módulos.
+
+Associação de eventos	FAU_SAR    	Associação de logs a módulos, ações, host e usuário executor.
+
+Integridade do fluxo	FPT_TST    	Verificação lógica do estado e execução consistente dos módulos.
+
+Separação de funções	FMT_SMF    	Separação entre Core (orquestração) e módulos (segurança).
+
+Proteção de dados de auditoria	 FDP_ACC    	Controle lógico sobre os dados de logs e relatórios gerados.
+
+### ⚠️ Criptografia de logs e autenticação avançada são consideradas extensões futuras, fora do escopo atual do Core.
 
 ## 6. Mapeamento do Core e Módulos
 
 ### 6.1 Componentes do Core
 
 Componente	Funções de Segurança
+
 module_loader	FAU_GEN, FMT_SMF
+
 base_module	FPT_TST, FMT_SMF
+
 module_result	FAU_SAR
+
 logger	FAU_GEN, FDP_ACC
+
 main	FAU_GEN (orquestração)
-6.2 Exemplos de Módulos Integrados
+
+### 6.2 Exemplos de Módulos Integrados
+
 Módulo	Funções Relacionadas
+
 Firewall Audit (UFW)	FAU_GEN, FPT_TST
+
 Firewall Hardening (UFW)	FAU_GEN, FDP_ACC
+
 Slow HTTP Audit	FAU_GEN
+
 Network Scan	FAU_GEN
+
 System Checkup	FAU_GEN, FPT_TST
 
 ## 7. Nível de Garantia (EAL)
