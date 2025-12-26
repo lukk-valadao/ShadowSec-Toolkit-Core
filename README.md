@@ -1,12 +1,12 @@
-# 🛡️ ShadowSec Toolkit • Core
+# 🛡️ ShadowSec Toolkit • Core ©
 
-![OS Compatibility](https://img.shields.io/badge/OS-Linux%20|%20Windows-blueviolet.svg)
+![OS](https://img.shields.io/badge/OS-Linux%20%7C%20Windows%20%7C%20Android-blueviolet)   ![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python)
 
-![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)
+![Architecture](https://img.shields.io/badge/Architecture-Plugin--Based-critical)   ![Security](https://img.shields.io/badge/Security-Offensive%20%26%20Defensive-red)
 
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)
+![Stability](https://img.shields.io/badge/Stability-Core%20Stable%20%7C%20Modules%20Migrating-orange)   ![Use Case](https://img.shields.io/badge/Use%20Case-Security%20Research-informational)
 
-![License](https://img.shields.io/badge/license-MIT-green.svg)
+![License](https://img.shields.io/badge/License-MIT-green)
 
 ## Framework Modular de Cibersegurança, para Auditoria, Hardening e Monitoramento local, com foco em arquitetura sólida, extensibilidade e operação controlada.
 
@@ -255,9 +255,9 @@ Uso, modificação e redistribuição são permitidos, desde que mantidos os cr�
 
 ## 📧 Contato: lukk.valadao@gmail.com
 
-## 🛡️ ShadowSec Toolkit
+## 🛡️ ShadowSec Toolkit ©
 
 ### Autor: Luciano Valadão
 
-19/12/2025
+### 19/12/2025
 

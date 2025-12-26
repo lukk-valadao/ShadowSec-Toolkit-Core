@@ -1,48 +1,60 @@
-# ShadowSec Toolkit – Documentação de Arquitetura e Diretrizes
+# 🛡️ ShadowSec Toolkit ©
+
+Documentação de Arquitetura e Diretrizes
+
+Autor: Luciano Valadão
+Data: 16/12/2025
 
 ## 1. Visão Geral
 
-O **ShadowSec Toolkit** evoluiu de um conjunto de scripts isolados para um **framework modular de cibersegurança**, com carregamento dinâmico de módulos, separação clara de responsabilidades e base preparada para expansão futura (desktop, mobile e interfaces gráficas).
+O ShadowSec Toolkit evoluiu de um conjunto de scripts isolados para um framework modular de cibersegurança, orientado a plugins, com:
 
-Este documento registra:
-- As **alterações arquiteturais realizadas**
-- O **estado atual do projeto**
-- As **regras e diretrizes** que devem ser seguidas daqui em diante
+Carregamento dinâmico de módulos
 
----
+Separação clara de responsabilidades
+
+Contrato de execução e retorno padronizado
+
+Base sólida para expansão futura (Desktop, Mobile, GUI, API)
+
+Este documento define o estado oficial da arquitetura, bem como regras obrigatórias para qualquer evolução do projeto.
 
 ## 2. Problema Original
 
-Antes das alterações, o projeto apresentava:
-- Importações manuais de módulos
-- Execução acoplada ao `main.py`
-- Falta de padronização entre módulos
-- Dificuldade para escalar (mobile, UI, API)
-- Falta de controle sobre onde cada módulo pode rodar
+Antes da reestruturação, o projeto apresentava:
 
----
+Importações manuais de módulos
+
+Execução fortemente acoplada ao main.py
+
+Ausência de padrão entre módulos
+
+Dificuldade de expansão (UI, Mobile, API)
+
+Falta de controle sobre onde cada módulo poderia rodar
 
 ## 3. Solução Arquitetural Adotada
-
 ### 3.1 Núcleo (Core)
 
-O diretório `core/` passou a concentrar **toda a lógica estrutural do framework**:
+O diretório core/ concentra toda a lógica estrutural do framework.
 
-- `BaseModule` – contrato obrigatório para todos os módulos
-- `ModuleResult` – resultado padronizado de execução
-- `ModuleScope` – define onde o módulo pode rodar
-- `module_loader.py` – carregamento dinâmico automático
+Componentes principais:
 
-Isso transforma o ShadowSec em um **sistema orientado a plugins**.
+BaseModule – contrato obrigatório de todos os módulos
 
----
+ModuleResult – padrão único de retorno
 
-### 3.2 BaseModule (Contrato Obrigatório)
+ModuleScope – definição explícita de plataforma
 
-Todo módulo **DEVE** herdar de `BaseModule`.
+module_loader.py – carregamento dinâmico automático
 
-Requisitos mínimos:
-```python
+O ShadowSec passa a operar como um sistema orientado a plugins, desacoplado da interface.
+
+## 4. BaseModule – Contrato Obrigatório
+
+Todo módulo DEVE herdar de BaseModule.
+
+Contrato mínimo:
 class BaseModule(ABC):
     name: str
     scope: ModuleScope
@@ -50,43 +62,37 @@ class BaseModule(ABC):
     @abstractmethod
     def run(self) -> ModuleResult:
         pass
-```
 
-Isso garante:
-- Interface uniforme
-- Execução previsível
-- Compatibilidade com qualquer frontend futuro
+Garantias fornecidas:
 
----
+Interface uniforme
 
-### 3.3 ModuleScope (Classificação de Plataforma)
+Execução previsível
 
-Cada módulo agora declara explicitamente **onde pode ser executado**:
+Compatibilidade com qualquer frontend (CLI, Desktop, Mobile, API)
 
-```python
+## 5. ModuleScope – Classificação de Plataforma
+
+Cada módulo DEVE declarar explicitamente onde pode ser executado.
+
 class ModuleScope(Enum):
     DESKTOP_ONLY = auto()
     SHARED = auto()
     MOBILE_ONLY = auto()
-```
 
 Exemplo:
-```python
 scope = ModuleScope.DESKTOP_ONLY
-```
 
-Isso permite:
-- Filtrar menus
-- Evitar execução inválida em mobile
-- Planejar migração futura sem retrabalho
+Benefícios:
 
----
+Filtro automático de menus
 
-## 4. Carregamento Dinâmico de Módulos
+Prevenção de execução inválida em mobile
 
-### 4.1 Estrutura Obrigatória
+Planejamento de migração futura sem retrabalho
 
-```
+## 6. Carregamento Dinâmico de Módulos
+### 6.1 Estrutura Obrigatória
 modules/
 ├── firewall/
 │   ├── __init__.py
@@ -95,118 +101,187 @@ modules/
 ├── syscheckup/
 ├── limpeza/
 └── __init__.py
-```
 
-Cada subpasta é tratada como um **package de módulos**.
 
----
+Cada subdiretório representa um package de módulos.
 
-### 4.2 Module Loader
+### 6.2 Module Loader
 
 O carregamento é feito via reflexão:
 
-```python
 modules = load_modules("modules")
-```
+
 
 O loader:
-- Importa automaticamente todos os subpackages
-- Identifica subclasses de `BaseModule`
-- Instancia apenas módulos válidos
 
-Nenhum módulo deve ser importado manualmente no `main.py`.
+Importa automaticamente todos os subpackages
 
----
+Identifica subclasses válidas de BaseModule
 
-## 5. Estrutura do Main
+Instancia apenas módulos compatíveis
 
-O `main.py` agora tem responsabilidades claras:
+🚫 Nenhum módulo deve ser importado manualmente no main.py.
 
-- Inicialização visual (banner)
-- Carregamento de módulos
-- Renderização de menu
-- Execução controlada
+## 7. Estrutura do Main
 
-Ele **não contém lógica de segurança**.
+O main.py possui responsabilidades estritamente definidas:
 
-Isso garante:
-- Código limpo
-- Facilidade de manutenção
-- Substituição futura por UI gráfica ou mobile
+Inicialização visual (banner)
 
----
+Carregamento de módulos
 
-## 6. Padrão de Resultado (ModuleResult)
+Renderização de menu
 
-Todo módulo retorna um `ModuleResult`:
+Execução controlada
 
-Campos principais:
-- `module`
-- `status`
-- `severity`
-- `summary`
-- `data`
-- `recommendations`
-- `platform`
+🚫 O main.py não contém lógica de segurança.
 
-Isso garante:
-- Logs estruturados
-- Relatórios consistentes
-- Integração futura com dashboards
+Benefícios:
 
----
+Código limpo
 
-## 7. Diretrizes para Novos Módulos
+Fácil manutenção
 
-### Obrigatório
-- Herdar de `BaseModule`
-- Declarar `name` e `scope`
-- Retornar sempre `ModuleResult`
-- Não usar `print()` fora do contexto controlado
+Substituição futura por GUI ou mobile sem refatoração
 
-### Recomendado
-- Separar **audit** e **apply**
-- Não assumir privilégios sem checagem
-- Detectar plataforma antes de executar
+## 8. Contrato de Interface – ModuleResult (OBRIGATÓRIO)
 
----
+Todo módulo DEVE retornar um objeto ModuleResult, seguindo exatamente este contrato.
 
-## 8. Preparação para Mobile (Flutter)
+### 8.1 Estrutura Oficial do ModuleResult
+module: string
+    Nome único do módulo
 
-Decisão arquitetural:
+status: enum
+    Valores possíveis:
+    - success
+    - warning
+    - error
+    - skipped
 
-- **Python continua sendo o motor**
-- Flutter será apenas interface
-- Nenhuma lógica de segurança será reescrita em Kotlin
+severity: enum
+    Valores possíveis:
+    - info
+    - low
+    - medium
+    - high
+    - critical
 
-Possíveis integrações futuras:
-- API local (FastAPI)
-- Execução via subprocess
-- Comunicação por socket local
+summary: string
+    Descrição curta e humana do resultado
 
----
+data: dict
+    Dados técnicos estruturados
+    (NUNCA texto solto ou logs)
 
-## 9. Estado Atual do Projeto
+recommendations: list[string]
+    Ações sugeridas ao usuário
 
-Atualmente o ShadowSec:
-- Possui arquitetura modular sólida
-- Suporta expansão controlada
-- Está pronto para UI, mobile e automação
-- Pode ser usado como base profissional
+platform: enum
+    - desktop
+    - mobile
+    - shared
 
----
+timestamp: string (ISO-8601)
 
-## 10. Regra Final
+### 8.2 Regras para Interfaces (CLI, GUI, Mobile, API)
 
-> Nenhuma funcionalidade nova deve quebrar a arquitetura existente.
+A interface NÃO executa lógica de segurança
+
+A interface NÃO interpreta texto livre
+
+Toda visualização é baseada apenas em:
+
+status
+
+severity
+
+dados estruturados
+
+Qualquer frontend deve consumir apenas ModuleResult
+
+Isso garante compatibilidade com:
+
+Flutter
+
+Web dashboards
+
+APIs REST
+
+Automação e relatórios
+
+## 9. Diretrizes para Novos Módulos
+Obrigatório
+
+Herdar de BaseModule
+
+Declarar name e scope
+
+Retornar sempre ModuleResult
+
+Não usar print() fora do contexto controlado
+
+Recomendado
+
+Separar audit e apply
+
+Não assumir privilégios sem checagem
+
+Detectar plataforma antes da execução
+
+## 9.1 Módulos Apply devem sempre:
+
+- Checar privilégios
+
+- Registrar mudanças
+
+- Permitir rollback quando possível
+
+## 10. Preparação para Mobile (Flutter)
+
+Decisão Arquitetural
+
+Python permanece como motor de segurança
+
+Flutter será apenas interface
+
+Nenhuma lógica será reescrita em Kotlin ou Dart
+
+Integrações futuras possíveis:
+
+API local (FastAPI)
+
+Execução via subprocess
+
+Comunicação via socket local
+
+## 11. Estado Atual do Projeto
+
+Atualmente, o ShadowSec Toolkit:
+
+Possui arquitetura modular sólida
+
+Está preparado para UI, mobile e automação
+
+Permite crescimento sem refatoração estrutural
+
+Pode ser utilizado como base profissional
+
+## 12. Regra Final (INQUEBRÁVEL)
+
+Nenhuma funcionalidade nova deve quebrar esta arquitetura.
 
 Se quebrar:
-- O módulo está errado
-- Não o core
+
+❌ O módulo está errado
+
+✅ O core está certo
 
 ---
 
-🛡️ ShadowSec Toolkit
+# Arquitetura antes de funcionalidade.
 
-Luciano Valadão
+---
+🛡️ ShadowSec Toolkit ©
+Autor: Luciano Valadão
 16/12/2025
