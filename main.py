@@ -47,9 +47,6 @@ def render_result(result: ModuleResult):
         for r in result.recommendations:
             print(f" • {r}")
 
-    # REMOVIDO log_json_audit daqui
-
-
 # ==========================================================
 # MENU
 # ==========================================================
@@ -71,14 +68,11 @@ def menu():
     ║ ▓▓   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝  ╚═════╝  ╚══╝╚══╝   ▓▓ ║
     ║ ▓▓                                                        ▓▓ ║
     ║ ▓▓            SHADOWSEC TOOLKIT CORE v1.0                 ▓▓ ║
-    ║ ▓▓        システム侵入検知モードが有効になりました        ▓▓ ║
+    ║ ▓▓      システム侵入検知モードが有効になりました          ▓▓ ║
     ║ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ║
     ╚══════════════════════════════════════════════════════════════╝{DARK['reset']}
 """
-
         print(UNIVERSAL_BANNER)
-
-
         print("[ 0 ] Sair")
 
         indexed = {}
@@ -98,11 +92,17 @@ def menu():
 
         module = indexed.get(opt)
         if module:
-            result = module.run()
-            render_result(result)
-            pause()
+            try:
+                # Tentativa de execução do módulo selecionado
+                result = module.run()
+                render_result(result)
+            except Exception as e:
+                # Captura falhas internas do módulo sem derrubar o Core
+                print(f"\n{DARK['blood']}[!] ERRO CRÍTICO NO MÓDULO '{module.name}': {e}{DARK['reset']}")
+            finally:
+                pause()
         else:
-            print("Opção inválida.")
+            print(f"{DARK['blood']}Opção inválida.{DARK['reset']}")
             pause()
 
 # ==========================================================

@@ -156,10 +156,10 @@ module: string
 
 status: enum
     Valores possíveis:
-    - success
-    - warning
-    - error
-    - skipped
+    - OK
+    - WARNING
+    - FAIL
+    - NOT_APPLICABLE
 
 severity: enum
     Valores possíveis:
@@ -288,4 +288,4 @@ Se quebrar:
 
 Autor: Luciano Valadão
 
-16/12/2025
+26/12/2025

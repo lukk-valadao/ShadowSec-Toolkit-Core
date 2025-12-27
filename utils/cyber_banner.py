@@ -1,13 +1,9 @@
-# ================================================
-# ANIMATED BANNER ENGINE – Universal Cyberpunk v1
-# Cole esse bloco no topo de qualquer script
-# ================================================
-
 import os
 import time
 import sys
+import ctypes
 
-# PALETA DARK CYBERPUNK (mude à vontade)
+# PALETA DARK CYBERPUNK (Normalizada para garantir compatibilidade)
 DARK = {
     "purple":   "\033[38;2;140;0;255m",
     "violet":   "\033[38;2;170;50;220m",
@@ -19,14 +15,12 @@ DARK = {
     "reset":    "\033[0m"
 }
 
-# Sequência da animação (só roda uma vez)
 ANIM_SEQUENCE = [
     DARK["purple"], DARK["blood"], DARK["violet"],
     DARK["midnight"], DARK["magenta"], DARK["orchid"],
     DARK["cyan"], DARK["purple"]
 ]
 
-# Seu banner aqui (pode ter quantas linhas quiser)
 UNIVERSAL_BANNER = """
     ╔══════════════════════════════════════════════════════════════╗
     ║ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ║
@@ -40,34 +34,45 @@ UNIVERSAL_BANNER = """
     ║ ▓▓   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝  ╚═════╝  ╚══╝╚══╝   ▓▓ ║
     ║ ▓▓                                                        ▓▓ ║
     ║ ▓▓            SHADOWSEC TOOLKIT CORE v1.0                 ▓▓ ║
-    ║ ▓▓        システム侵入検知モードが有効になりました        ▓▓ ║
+    ║ ▓▓      システム侵入検知モードが有効になりました          ▓▓ ║
     ║ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ║
-    ╚══════════════════════════════════════════════════════════════╝
-"""
+    ╚══════════════════════════════════════════════════════════════╝"""
 
-def cyber_boot(banner_text=UNIVERSAL_BANNER, final_color=DARK["purple"], speed=0.22):
+def _init_terminal():
+    """Habilita suporte a ANSI no Windows 10+"""
+    if os.name == 'nt':
+        kernel32 = ctypes.windll.kernel32
+        kernel32.SetConsoleMode(kernel32.GetStdHandle(-11), 7)
+
+def cyber_boot(banner_text=UNIVERSAL_BANNER, final_color=DARK["purple"], speed=0.18):
+    _init_terminal()
+
+    # Limpa a tela antes de começar
     os.system('cls' if os.name == 'nt' else 'clear')
 
-    # Contar linhas corretamente (incluindo a última mesmo sem \n final)
-    num_lines = banner_text.count('\n') + 1
+    # Ajuste fino: remove linhas vazias extras para evitar saltos na animação
+    clean_banner = banner_text.strip("\r\n")
+    lines = clean_banner.splitlines()
+    num_lines = len(lines)
 
-    for color in ANIM_SEQUENCE:
-        print(color + banner_text + DARK["reset"])
-        time.sleep(speed)
-        print(f"\033[{num_lines}A", end="")
+    try:
+        for color in ANIM_SEQUENCE:
+            # Imprime o banner com a cor atual
+            sys.stdout.write(color + clean_banner + DARK["reset"] + "\n")
+            sys.stdout.flush()
+            time.sleep(speed)
 
-    # Banner final
-    print(final_color + banner_text + DARK["reset"])
-    time.sleep(0.8)
+            # Move o cursor de volta para o topo do banner (ANSI Escape)
+            sys.stdout.write(f"\033[{num_lines}A")
 
-# ================================================
-# EXEMPLO DE USO EM QUALQUER PROJETO
-# ================================================
+        # Imprime o banner final para fixar na tela
+        sys.stdout.write(final_color + clean_banner + DARK["reset"] + "\n\n")
+        sys.stdout.flush()
+
+    except Exception:
+        # Fallback caso o terminal não suporte escapes
+        print(final_color + clean_banner + DARK["reset"])
 
 if __name__ == "__main__":
-    # Só mudar o texto aqui ou passar como parâmetro
-    cyber_boot()                                      # usa o banner padrão
-    # cyber_boot(meu_banner_personalizado)            # usa banner customizado
-    # cyber_boot(final_color=DARK["blood"], speed=0.15)  # cor final vermelha + mais rápido
-
-    print(f"{DARK['violet']}[+] O modo de detecção de intrusão do sistema está ativado.{DARK['reset']}\n")
+    cyber_boot()
+    print(f"{DARK['violet']}[+] SHADOWSEC CORE ONLINE{DARK['reset']}\n")

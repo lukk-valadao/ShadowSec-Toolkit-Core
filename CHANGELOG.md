@@ -9,11 +9,37 @@ e o projeto adota **Versionamento Semântico (SemVer)**
 
 ---
 
-## [v0.5.0-dev] — Em desenvolvimento
+## [v1.0.0-stable] — 2025-12-26
+Esta versão marca a estabilização final do Core, com suporte multiplataforma completo e auditoria resiliente.
 
-Esta versão representa a fase atual de evolução do ShadowSec Toolkit,
-com o **Core já estável** e os **módulos sendo migrados gradualmente**
-para o novo formato arquitetural.
+### Added
+Multi-OS Support: Implementação do platform_utils.py com detecção granular de Linux, Windows e Android.
+
+Windows Admin Check: Verificação nativa de privilégios de Administrador no Windows via ctypes.
+
+Android Detection: Identificação de ambiente Android para futura compatibilidade mobile.
+
+Logger Hardening: Suporte à serialização automática de Enums e objetos complexos no JSON de auditoria (default=str).
+
+Audit Persistence: O módulo Slow HTTP agora gera registros de auditoria mesmo em casos de resultados negativos (auditoria limpa).
+
+### Changed
+Status Alignment: Atualização de todos os módulos e documentos para os novos Enums de status: OK, WARNING, FAIL, NOT_APPLICABLE.
+
+Regex Resilience: Melhoria no tratamento de erros de parsing nos logs de servidores Web (Nginx/Apache).
+
+Final Architecture: Consolidação da regra "Core fixo, Módulos dinâmicos".
+
+### Security
+Garantia de rastreabilidade total (SIEM-ready) em todas as execuções do Core.
+
+Tratamento de exceções no logger para evitar interrupção do toolkit em caso de falha de I/O.
+
+---
+
+## [v0.5.0-dev] — 2025-12-20
+
+Fase intermediária de migração dos módulos legados para o novo formato.
 
 ### Added
 - Documento `STATUS.md` para acompanhamento do progresso da migração
