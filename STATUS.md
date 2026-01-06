@@ -110,6 +110,6 @@ Pull Requests que violem estas diretrizes **serão recusados**.
 ## 📅 Última Atualização
 
 - Data: **26/12/2025**
-- Versão do Core: **v0.5.0-dev**
+- Versão do Core: **v1.0.0-stable**
 - Base estável: **v0.4.0-core**
 - Status geral: **Migração ativa**
