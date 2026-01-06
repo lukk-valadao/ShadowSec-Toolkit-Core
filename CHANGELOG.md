@@ -8,6 +8,29 @@ e o projeto adota **Versionamento Semântico (SemVer)**
 (https://semver.org/).
 
 ---
+## [Unreleased]
+
+### Added
+- System Cleanup module (Audit / Apply)
+  - Auditoria de pacotes, cache APT e journal
+  - Apply com execução mínima de privilégios
+  - Limpeza explícita de lixeira do usuário alvo
+
+- System Updates module (Audit / Apply)
+  - Auditoria de pacotes pendentes
+  - Apply controlado para atualizações APT
+  - Separação total entre auditoria e modificação do sistema
+
+### Changed
+- Ajustes no controle de privilégios para módulos Apply
+- Melhorias no fluxo de execução de módulos sensíveis
+
+### Security
+- Garantia de least privilege nos módulos de limpeza e atualização
+- Nenhuma elevação automática de privilégios
+
+
+---
 
 ## [v1.0.0-stable] — 2025-12-26
 Esta versão marca a estabilização final do Core, com suporte multiplataforma completo e auditoria resiliente.
